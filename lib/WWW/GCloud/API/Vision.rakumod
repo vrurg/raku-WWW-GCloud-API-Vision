@@ -1,6 +1,6 @@
 use v6.e.PREVIEW;
 # https://cloud.google.com/vision/docs/reference/rest
-unit class WWW::GCloud::API::Vision;
+unit class WWW::GCloud::API::Vision:ver($?DISTRIBUTION.meta<ver>):auth($?DISTRIBUTION.meta<auth>):api($?DISTRIBUTION.meta<api>);
 
 use AttrX::Mooish;
 use WWW::GCloud;
@@ -33,3 +33,5 @@ method build-operations {
 method method-url(Str:D $method-path) {
     ~ $.api-url.clone: path => "/" ~ (|$.api-url.path-segments.grep(?*), $method-path).join("/")
 }
+
+our sub META6 { $?DISTRIBUTION.meta }
