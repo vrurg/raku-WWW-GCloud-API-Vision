@@ -1,0 +1,48 @@
+use v6.e.PREVIEW;
+use Test::Async;
+
+use WWW::GCloud::R::Vision::Feature;
+use WWW::GCloud::API::Vision::Types;
+
+# my WWW::GCloud::R::Vision::Feature $f .= new( (:type(GCVFFace), :max-results(10)), );
+
+my @tests =
+    {
+        msg => "enum value",
+        from => GCVFDocument,
+        json => '{"type":"DOCUMENT_TEXT_DETECTION"}',
+    },
+    {
+        msg => "string value",
+        from => "DOCUMENT_TEXT_DETECTION",
+        json => '{"type":"DOCUMENT_TEXT_DETECTION"}',
+    },
+    {
+        msg => "profile hash, enum",
+        from => %( :type(GCVFLabel), :max-results(42) ),
+        json => '{"maxResults":42,"type":"LABEL_DETECTION"}',
+    },
+    {
+        msg => "profile list, enum",
+        from => ( :type(GCVFLabel), :max-results(12), :model<builtin/latest> ),
+        json => '{"maxResults":12,"model":"builtin/latest","type":"LABEL_DETECTION"}',
+    },
+    {
+        msg => "profile list, string",
+        from => ( :type("PRODUCT_SEARCH"), :maxResults(12) ),
+        json => '{"maxResults":12,"type":"PRODUCT_SEARCH"}',
+    },
+    ;
+
+plan +@tests;
+
+for @tests -> (:$msg, :$from, :$json) {
+    subtest $msg => {
+        my WWW::GCloud::R::Vision::Feature() $f = $from;
+        is $f.to-json(:sorted-keys), $json, "coercion";
+        $f .= new: $from;
+        is $f.to-json(:sorted-keys), $json, ".new method";
+    }
+}
+
+done-testing;
