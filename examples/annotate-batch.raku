@@ -92,8 +92,8 @@ sub MAIN(Str:D $project, Str:D $bucket-path, *@files, Bool :$image) {
             });
 
     while !$op.done {
-        sleep 1;
-        say "Operation status: ", ($op = await $vis.operations.get($op)).to-json;
+        sleep 2;
+        say "Operation status:\n", ($op = await $vis.operations.get($op)).to-json(:sorted-keys, :pretty).indent(4);
     }
 
     my \response-type = $image
@@ -101,7 +101,8 @@ sub MAIN(Str:D $project, Str:D $bucket-path, *@files, Bool :$image) {
         !! WWW::GCloud::R::Vision::AnnotateFileResponse;
 
     say "Fetching results.";
-    for $op.response<responses>.list -> %out-resp {
+    my @resp = $op.response<responses> // ($op.response,);
+    for @resp -> %out-resp {
         my $out-uri = GCSUri.parse: %out-resp<outputConfig><gcsDestination><uri>;
 
         for $objects.list($out-uri.bucket, $out-uri.object ~ '*').list {
@@ -110,7 +111,7 @@ sub MAIN(Str:D $project, Str:D $bucket-path, *@files, Bool :$image) {
                                 .andthen({
                                     response-type.from-json(await .result.body-text)
                                 });
-            say " > completed ", $res.responses.elems, " requests.";
+            say " > completed ", $res.responses.elems, " requests in a {$res.^name}.";
 
             for $res.responses -> $response {
                 say "   * ", GCSUri($response.context.uri).basename;
