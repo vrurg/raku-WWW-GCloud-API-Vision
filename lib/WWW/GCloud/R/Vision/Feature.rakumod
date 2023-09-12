@@ -8,7 +8,7 @@ use WWW::GCloud::API::Vision::Types;
 
 also is gc-record;
 
-has GCVFeatureType(Str) $.type is marshalled-by('Str');
+has GCVFeatureType(Str) $.type;
 has Int $.maxResults;
 has Str $.model;
 

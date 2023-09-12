@@ -8,5 +8,5 @@ use WWW::GCloud::API::Vision::Types;
 
 also is gc-record;
 
-has GCVBreakType(Str) $.type is marshalled-by('Str');
+has GCVBreakType(Str) $.type;
 has Bool $.isPrefix;
