@@ -9,7 +9,7 @@ has Str $.content;
 submethod TWEAK {
     with $!content {
         $!content but role :: {
-            method gist {
+            multi method gist(::?CLASS:D:) {
                 nextsame if self.chars < 24;
                 self.substr(0, 10) ~ "..." ~ self.substr(*-10)
             }

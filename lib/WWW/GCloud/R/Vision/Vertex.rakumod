@@ -8,8 +8,8 @@ also is gc-record;
 has Int $.x;
 has Int $.y;
 
-method gist {
+multi method gist(::?CLASS:D:) {
     "($!x, $!y)"
 }
 
-method Str { self.gist }
+multi method Str(::?CLASS:D:) { self.gist }
