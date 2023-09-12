@@ -3,6 +3,7 @@
 
 =head2 v0.0.2
 
-
+=item Fix C<gist> and C<Str> methods to only handle definite cases
+=item Improve hanlding of enums by utilizing C<WWW::GCloud>-provided C<gc-enum> trait
 
 =end pod
