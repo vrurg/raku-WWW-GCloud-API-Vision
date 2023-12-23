@@ -1,21 +1,20 @@
 {
-    "api": "0.0.1",
+    "api": "0.0.2",
     "auth": "zef:vrurg",
     "authors": [
         "Vadim Belman"
     ],
     "build-depends": [],
     "depends": [
-        "AttrX::Mooish:auth<zef:vrurg>:api<1.0.0+>:ver<1.0.3+>",
+        "AttrX::Mooish:auth<zef:vrurg>:api<1.0.0+>:ver<1.0.8+>",
         "Color:ver<1.004001>:auth<zef:raku-community-modules>",
         "Cro::Core:ver<0.8.9>:auth<zef:cro>",
-        "JSON::Marshal:ver<0.0.24>:auth<zef:jonathanstowe>:api<1.0>",
-        "JSON::Unmarshal:ver<0.15>:auth<zef:raku-community-modules>",
+        "JSON::Class:auth<zef:vrurg>:api<1.0.4>",
         "MIME::Base64:ver<1.2.3>:auth<zef:raku-community-modules>",
         "MIME::Types:ver<0.2>:auth<zef:raku-community-modules>",
         "Method::Also:ver<0.0.8>:auth<zef:lizmat>",
         "WWW::GCloud::API::Storage:auth<zef:vrurg>",
-        "WWW::GCloud:auth<zef:vrurg>:ver<0.0.4>"
+        "WWW::GCloud:auth<zef:vrurg>:ver<0.0.6>"
     ],
     "description": "Google Cloud Vision API for WWW::GCloud",
     "license": "Artistic-2.0",
@@ -109,5 +108,5 @@
     "test-depends": [
         "Test::Async:ver<0.1.14+>:auth<zef:vrurg>"
     ],
-    "version": "0.0.2"
+    "version": "0.0.3"
 }

@@ -4,7 +4,9 @@ use v6.e.PREVIEW;
 # https://cloud.google.com/vision/docs/reference/rest/v1/images/asyncBatchAnnotate
 unit class WWW::GCloud::API::Vision::AnnotationQueue;
 
-use JSON::Marshal;
+use JSON::Class:auth<zef:vrurg>;
+use JSON::Class::Attr:auth<zef:vrurg>;
+
 use WWW::GCloud::API::Storage::Types;
 use WWW::GCloud::API::Vision::X;
 use WWW::GCloud::R::Vision::Feature;
@@ -17,12 +19,12 @@ use WWW::GCloud::Types;
 
 also is gc-record;
 
-has WWW::GCloud::Resource:D $.resource is required is json-skip;
+has WWW::GCloud::Resource:D $.resource is required is json(:skip);
 
 has Str $.parent;
-has Str $!project is built is json-skip;
+has Str $!project is built is json(:skip);
 
-my role Typed[::REQ-TYPE WWW::GCloud::RR::Vision::AnnotateRequest, &runner, Bool :$output-config] {
+my role Typed[::REQ-TYPE WWW::GCloud::RR::Vision::AnnotateRequest, &runner, Bool :$output-config] is json(:implicit) {
     has REQ-TYPE:D @.requests;
     has WWW::GCloud::R::Vision::OutputConfig $.outputConfig;
 
@@ -53,7 +55,14 @@ my role Typed[::REQ-TYPE WWW::GCloud::RR::Vision::AnnotateRequest, &runner, Bool
 
     # If $output-config then we need it in JSON.
     unless $output-config {
-        &trait_mod:<is>( ::?ROLE.^get_attribute_for_usage('$!outputConfig'), :json-skip );
+        ::?CLASS.HOW does my role :: {
+            method json-attr-register(Mu \obj, JSON::Class::Attr:D \attr) {
+                if attr.name eq '$!outputConfig' {
+                    nextwith(obj, attr.clone(:skip))
+                }
+                nextsame
+            }
+        }
     }
 }
 

@@ -3,10 +3,14 @@ unit role WWW::GCloud::RR::Vision::AnnotateFile;
 use experimental :will-complain;
 
 use MIME::Base64;
-use WWW::GCloud::RR::Vision::AnnotateRequest;
-use WWW::GCloud::R::Vision::InputConfig;
-use WWW::GCloud::API::Storage::Types;
 
+use JSON::Class:auth<zef:vrurg>;
+
+use WWW::GCloud::API::Storage::Types;
+use WWW::GCloud::R::Vision::InputConfig;
+use WWW::GCloud::RR::Vision::AnnotateRequest;
+
+also is json(:implicit);
 also does WWW::GCloud::RR::Vision::AnnotateRequest;
 
 has WWW::GCloud::R::Vision::InputConfig $.inputConfig;

@@ -2,7 +2,6 @@ use v6.e.PREVIEW;
 # https://cloud.google.com/vision/docs/reference/rest/v1/Feature
 unit class WWW::GCloud::R::Vision::Feature;
 
-use JSON::Marshal;
 use WWW::GCloud::Record;
 use WWW::GCloud::API::Vision::Types;
 

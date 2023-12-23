@@ -1,8 +1,12 @@
 use v6.e.PREVIEW;
 unit role WWW::GCloud::RR::Vision::Contentish[Bool :$mime-type = False];
 
+use JSON::Class:auth<zef:vrurg>;
+
 use MIME::Base64;
 use WWW::GCloud::Utils;
+
+also is json(:implicit);
 
 has Str $.content;
 

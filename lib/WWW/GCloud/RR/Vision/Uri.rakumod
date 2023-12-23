@@ -3,11 +3,13 @@ use WWW::GCloud::Types;
 use Cro::Uri;
 unit role WWW::GCloud::RR::Vision::Uri[::URI-TYPE Cro::Uri:U $ = GCUri:D, ::CONSTRAINT Mu $ = Str:D];
 
-use JSON::Marshal;
-use JSON::Unmarshal;
+use JSON::Class:auth<zef:vrurg>;
+
 use WWW::GCloud::API::Storage::Types;
 
-has URI-TYPE(CONSTRAINT) $.uri is marshalled-by('to-json') is unmarshalled-by('from-json');
+also is json(:implicit);
+
+has URI-TYPE(CONSTRAINT) $.uri is json(:to-json<to-json>, :from-json<from-json>);
 
 multi method COERCE(CONSTRAINT $uri) {
     self.new: :$uri
