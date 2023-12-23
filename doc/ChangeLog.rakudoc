@@ -1,9 +1,15 @@
 =begin pod
 =head1 CHANGELOG
 
-=head2 v0.0.2
+=begin item
+B<v0.0.3>
+=end item
+
+=begin item
+B<v0.0.2>
 
 =item Fix C<gist> and C<Str> methods to only handle definite cases
 =item Improve hanlding of enums by utilizing C<WWW::GCloud>-provided C<gc-enum> trait
+=end item
 
 =end pod
