@@ -1,6 +1,6 @@
 # WWW::GCloud::API::Vision Document Pages
 
-  - [`..::ChangeLog`](ChangeLog.md)
+  - [`Changes`](ChangeLog.md)
 
   - [`README`](README.md)
 
