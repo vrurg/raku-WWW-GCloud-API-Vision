@@ -5,10 +5,8 @@
 =begin item
 B<v0.0.4>
 
+=item Bump deps for compatibility with the latest Rakudo builds
 =end item
-
-=begin item
-B<v0.0.3>
 
 =begin item
 B<v0.0.3>
