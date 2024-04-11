@@ -6,15 +6,15 @@
     ],
     "build-depends": [],
     "depends": [
-        "AttrX::Mooish:auth<zef:vrurg>:api<1.0.6>:ver<1.0.9+>",
+        "AttrX::Mooish:auth<zef:vrurg>:api<1.0.6>:ver<1.0.10+>",
         "Color:ver<1.004001>:auth<zef:raku-community-modules>",
         "Cro::Core:ver<0.8.9>:auth<zef:cro>",
         "JSON::Class:auth<zef:vrurg>:api<1.0.5>",
         "MIME::Base64:ver<1.2.3>:auth<zef:raku-community-modules>",
         "MIME::Types:ver<0.2>:auth<zef:raku-community-modules>",
         "Method::Also:ver<0.0.8>:auth<zef:lizmat>",
-        "WWW::GCloud::API::Storage:auth<zef:vrurg>:ver<0.0.4>",
-        "WWW::GCloud:auth<zef:vrurg>:ver<0.0.7>"
+        "WWW::GCloud::API::Storage:auth<zef:vrurg>:ver<0.0.5>",
+        "WWW::GCloud:auth<zef:vrurg>:ver<0.0.8>"
     ],
     "description": "Google Cloud Vision API for WWW::GCloud",
     "license": "Artistic-2.0",
